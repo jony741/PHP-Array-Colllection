@@ -154,7 +154,7 @@ Array
 
 ### `all()`
 
-The all method returns the underlying array represented by the make data:
+The all method returns the underlying array represented by the data array:
 ```$xslt
 make_data([1, 2, 3])->all();
 
@@ -252,7 +252,7 @@ Output
  false
 ```
 ### `count()`
-The count method returns the total number of items in the make data:
+The count method returns the total number of items in the data array:
 ```$xslt
 $make_data = make_data([1, 2, 3, 4]);
 
