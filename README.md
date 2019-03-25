@@ -198,7 +198,7 @@ Output
 ```
 
 ### `collapse()`
-The collapse method collapses a data array of arrays into a single, flat collection:
+The collapse method collapses a data array of arrays into a single, flat data array:
 ```$xslt
 $make_data = make_data([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
 
@@ -211,7 +211,7 @@ Output
 [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 ### `combine()`
-The combine method combines the values of the collection, as keys, with the values of another array or collection:
+The combine method combines the values of the data array, as keys, with the values of another array or data array:
 ```$xslt
 $make_data = make_data(['name', 'age']);
 
@@ -224,7 +224,7 @@ Output
  ['name' => 'George', 'age' => 29]
 ```
 ### `concat()`
-The concat method appends the given array or data array values onto the end of the collection:
+The concat method appends the given array or data array values onto the end of the data array:
 ```$xslt
 $make_data = make_data(['John Doe']);
 
@@ -423,7 +423,7 @@ Output
  ['jony', 'php', 'javascript'];
 ```
 ### `flip()`
-The flip method swaps the collection's keys with their corresponding values:
+The flip method swaps the data arrays's keys with their corresponding values:
 ```$xslt
 $make_data = make_data(['name' => 'taylor', 'framework' => 'laravel']);
 
@@ -463,7 +463,7 @@ Output
  Jony
 ```
 ### `groupBy()`
-The groupBy method groups the collection's items by a given key:
+The groupBy method groups the data arrays's items by a given key:
 ```$xslt
 $make_data = make_data([
     ['account_id' => 'account-x10', 'product' => 'Chair'],
@@ -489,7 +489,7 @@ Output
      ]
 ```
 ### `has()`
-The has method determines if a given key exists in the collection:
+The has method determines if a given key exists in the data array:
 ```$xslt
 $make_data = make_data(['account_id' => 1, 'product' => 'Desk', 'amount' => 5]);
 
@@ -501,7 +501,7 @@ Output
  true
 ```
 ### `implode()`
-The implode method joins the items in a collection. Its arguments depend on the type of items in the collection. If the data array contains arrays or objects, you should pass the key of the attributes you wish to join, and the "glue" string you wish to place between the values:
+The implode method joins the items in a dara array. Its arguments depend on the type of items in the dara array. If the data array contains arrays or objects, you should pass the key of the attributes you wish to join, and the "glue" string you wish to place between the values:
 ```$xslt
 $make_data = make_data([
     ['account_id' => 1, 'product' => 'Desk'],
@@ -517,7 +517,7 @@ Desk, Chair
  
 ```
 ### `intersect()`
-The intersect method removes any values from the original data array that are not present in the given array or collection. The resulting data array will preserve the original collection's keys:
+The intersect method removes any values from the original data array that are not present in the given array or dara array. The resulting data array will preserve the original dara array's keys:
 ```$xslt
 $make_data = make_data(['Desk', 'Sofa', 'Chair']);
 
@@ -531,7 +531,7 @@ Output
  [0 => 'Desk', 2 => 'Chair']
 ```
 ### `intersectByKeys()`
-The intersectByKeys method removes any keys from the original data array that are not present in the given array or collection:
+The intersectByKeys method removes any keys from the original data array that are not present in the given array or dara array:
 ```$xslt
 $make_data = make_data([
     'serial' => 'UX301', 'type' => 'screen', 'year' => 2009
@@ -567,7 +567,7 @@ Output
 ```
 
 ### `keyBy()`
-The keyBy method keys the data array by the given key. If multiple items have the same key, only the last one will appear in the new collection:
+The keyBy method keys the data array by the given key. If multiple items have the same key, only the last one will appear in the new dara array:
 ```$xslt
 $make_data = make_data([
     ['product_id' => 'prod-100', 'name' => 'Desk'],
@@ -586,7 +586,7 @@ Output
      ]
 ```
 ### `keys()`
-The keys method returns all of the collection's keys:
+The keys method returns all of the data array's keys:
 ```$xslt
 $make_data = make_data([
     'prod-100' => ['product_id' => 'prod-100', 'name' => 'Desk'],
