@@ -62,7 +62,7 @@ Array
 
 #### Available Methods
 
-* [all()](#all)
+* [all](#all)
 * [average](#average)
 * [avg](#avg)
 * [chunk](#chunk)
