@@ -1,2 +1,4 @@
 .DS_Store
-./idea
+./idea/*
+/nbproject/private/
+ftpsync.settings
