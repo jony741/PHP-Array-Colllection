@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite34c55587edf479e8dab72713484aea0
+class ComposerStaticInit121660e5cb8b07b15ddbe535212014ef
 {
     public static $files = array (
         '1c754d3bc2112831a00b4b3b4bcfcde9' => __DIR__ . '/../..' . '/Array_master.php',
@@ -14,6 +14,7 @@ class ComposerStaticInite34c55587edf479e8dab72713484aea0
     public static $classMap = array (
         'Helper\\Arr' => __DIR__ . '/../..' . '/Helper/Arr.php',
         'Helper\\Arrayable' => __DIR__ . '/../..' . '/Helper/Arrayable.php',
+        'Helper\\Helpers' => __DIR__ . '/../..' . '/Helper/Helpers.php',
         'Helper\\Jsonable' => __DIR__ . '/../..' . '/Helper/Jsonable.php',
         'Traits\\Macroable' => __DIR__ . '/../..' . '/Traits/Macroable.php',
     );
@@ -21,7 +22,7 @@ class ComposerStaticInite34c55587edf479e8dab72713484aea0
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->classMap = ComposerStaticInite34c55587edf479e8dab72713484aea0::$classMap;
+            $loader->classMap = ComposerStaticInit121660e5cb8b07b15ddbe535212014ef::$classMap;
 
         }, null, ClassLoader::class);
     }

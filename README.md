@@ -187,9 +187,7 @@ Output
 The chunk method breaks  into multiple
 ```$xslt
 $make_data = make_data([1, 2, 3, 4, 5, 6, 7]);
-
 $chunks = $make_data->chunk(4);
-
 $chunks->toArray();
 ```
 Output
@@ -201,9 +199,7 @@ Output
 The collapse method collapses a data array of arrays into a single, flat data array:
 ```$xslt
 $make_data = make_data([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
-
 $collapsed = $make_data->collapse();
-
 $collapsed->all();
 ```
 Output
@@ -214,9 +210,7 @@ Output
 The combine method combines the values of the data array, as keys, with the values of another array or data array:
 ```$xslt
 $make_data = make_data(['name', 'age']);
-
 $combined = $make_data->combine(['George', 29]);
-
 $combined->all();
 ```
 Output
@@ -227,9 +221,7 @@ Output
 The concat method appends the given array or data array values onto the end of the data array:
 ```$xslt
 $make_data = make_data(['John Doe']);
-
 $concatenated = $make_data->concat(['Jane Doe'])->concat(['name' => 'Johnny Doe']);
-
 $concatenated->all();
 ```
 Output
@@ -240,9 +232,7 @@ Output
 The contains method determines whether the make_data contains a given item:
 ```$xslt
 $make_data = make_data(['name' => 'Desk', 'price' => 100]);
-
 $make_data->contains('Desk');
-
 $make_data->contains('New York');
 
 ```
@@ -255,7 +245,6 @@ Output
 The count method returns the total number of items in the data array:
 ```$xslt
 $make_data = make_data([1, 2, 3, 4]);
-
 $make_data->count();
 ```
 Output
@@ -266,9 +255,7 @@ Output
 The countBy method counts the occurences of values in the make_data. By default, the method counts the occurrences of every element:
 ```$xslt
 $make_data = make_data([1, 2, 2, 2, 3]);
-
 $counted = $make_data->countBy();
-
 $counted->all();
 ```
 Output
@@ -279,9 +266,7 @@ Output
 The diff method compares the data array against another data array or a plain PHP array based on its values. This method will return the values in the original data that are not present in the given data array:
 ```$xslt
 $make_data = make_data([1, 2, 3, 4, 5]);
-
 $diff = $make_data->diff([2, 4, 6, 8]);
-
 $diff->all();
 
 ```
@@ -322,13 +307,12 @@ $diff = make_data([
     'five' => 50,
 ]);
 
-$diff = make_data->diffKeys([
+$diff = $diff->diffKeys([
     'two' => 2,
     'four' => 4,
     'six' => 6,
     'eight' => 8,
 ]);
-
 $diff->all();
 ```
 Output
@@ -339,14 +323,35 @@ Output
 The except method returns all items in the data array except for those with the specified keys:
 ```$xslt
 $make_data = make_data(['product_id' => 1, 'price' => 100, 'discount' => false]);
-
 $filtered = $make_data->except(['price', 'discount']);
-
 $filtered->all();
 ```
 Output
 ```$xslt
  ['product_id' => 1]
+```
+### `except_multiple()`
+The except_multiple method returns all items in the data array except for those with the specified keys:
+```$xslt
+$make_data = make_data([['product_id' => 1, 'price' => 100, 'discount' => false],['product_id' => 2, 'price' => 500, 'discount' => true]]);
+$filtered = $make_data->except_multiple(['price', 'discount']);
+$filtered->all();
+```
+Output
+```$xslt
+ Array
+ (
+     [0] => Array
+         (
+             [product_id] => 1
+         )
+ 
+     [1] => Array
+         (
+             [product_id] => 2
+         )
+ 
+ )
 ```
 ### `filter()`
 The filter method filters the data array using the given callback, keeping only those items that pass a given truth test:
@@ -356,7 +361,6 @@ $make_data = make_data([1, 2, 3, 4]);
 $filtered = $make_data->filter(function ($value, $key) {
     return $value > 2;
 });
-
 $filtered->all();
 ```
 Output
@@ -383,7 +387,6 @@ $make_data = make_data([
     ['name' => 'Diego', 'age' => 23],
     ['name' => 'Linda', 'age' => 84],
 ]);
-
 $make_data->firstWhere('name', 'Linda');
 ```
 Output
@@ -402,7 +405,6 @@ $make_data = make_data([
 $flattened = $make_data->flatMap(function ($values) {
     return array_map('strtoupper', $values);
 });
-
 $flattened->all();
 ```
 Output
@@ -413,9 +415,7 @@ Output
 The flatten method flattens a multi-dimensional data array into a single dimension:
 ```$xslt
 $make_data = make_data(['name' => 'taylor', 'languages' => ['php', 'javascript']]);
-
 $flattened = $make_data->flatten();
-
 $flattened->all();
 ```
 Output
@@ -425,38 +425,32 @@ Output
 ### `flip()`
 The flip method swaps the data arrays's keys with their corresponding values:
 ```$xslt
-$make_data = make_data(['name' => 'taylor', 'framework' => 'laravel']);
-
+$make_data = make_data(['name' => 'Jony', 'library' => 'array_master']);
 $flipped = $make_data->flip();
-
 $flipped->all();
 ```
 Output
 ```$xslt
- ['jony' => 'name', 'laravel' => 'framework']
+ ['jony' => 'name', 'array_master' => 'library']
 ```
 ### `forget()`
 The forget method removes an item from the data array by its key:
 ```$xslt
-$make_data = make_data(['name' => 'taylor', 'framework' => 'laravel']);
-
+$make_data = make_data(['name' => 'Jony', 'library' => 'array_master']);
 $make_data->forget('name');
-
 $make_data->all();
 
 
 ```
 Output
 ```$xslt
-  ['framework' => 'laravel']
+  ['library' => 'array_master']
 ```
 ### `get()`
 The get method returns the item at a given key. If the key does not exist, null is returned:
 ```$xslt
-$make_data = make_data(['name' => 'Jony', 'framework' => 'laravel']);
-
+$make_data = make_data(['name' => 'Jony', 'library' => 'array_master']);
 $value = $make_data->get('name');
-
 ```
 Output
 ```$xslt
@@ -470,9 +464,7 @@ $make_data = make_data([
     ['account_id' => 'account-x10', 'product' => 'Bookcase'],
     ['account_id' => 'account-x11', 'product' => 'Desk'],
 ]);
-
 $grouped = $make_data->groupBy('account_id');
-
 $grouped->toArray();
 
 ```
@@ -492,7 +484,6 @@ Output
 The has method determines if a given key exists in the data array:
 ```$xslt
 $make_data = make_data(['account_id' => 1, 'product' => 'Desk', 'amount' => 5]);
-
 $make_data->has('product');
 
 ```
@@ -507,7 +498,6 @@ $make_data = make_data([
     ['account_id' => 1, 'product' => 'Desk'],
     ['account_id' => 2, 'product' => 'Chair'],
 ]);
-
 $make_data->implode('product', ', ');
 
 ```
@@ -520,9 +510,7 @@ Desk, Chair
 The intersect method removes any values from the original data array that are not present in the given array or dara array. The resulting data array will preserve the original dara array's keys:
 ```$xslt
 $make_data = make_data(['Desk', 'Sofa', 'Chair']);
-
 $intersect = $make_data->intersect(['Desk', 'Chair', 'Bookcase']);
-
 $intersect->all();
 
 ```
@@ -536,7 +524,6 @@ The intersectByKeys method removes any keys from the original data array that ar
 $make_data = make_data([
     'serial' => 'UX301', 'type' => 'screen', 'year' => 2009
 ]);
-
 $intersect = $make_data->intersectByKeys([
     'reference' => 'UX404', 'type' => 'tab', 'year' => 2011
 ]);
@@ -573,9 +560,7 @@ $make_data = make_data([
     ['product_id' => 'prod-100', 'name' => 'Desk'],
     ['product_id' => 'prod-200', 'name' => 'Chair'],
 ]);
-
 $keyed = $make_data->keyBy('product_id');
-
 $keyed->all();
 ```
 Output
@@ -592,7 +577,6 @@ $make_data = make_data([
     'prod-100' => ['product_id' => 'prod-100', 'name' => 'Desk'],
     'prod-200' => ['product_id' => 'prod-200', 'name' => 'Chair'],
 ]);
-
 $keys = $make_data->keys();
 ```
 Output
@@ -617,7 +601,6 @@ $make_data = make_data([1, 2, 3, 4, 5]);
 $multiplied = $make_data->map(function ($item, $key) {
     return $item * 2;
 });
-
 $multiplied->all();
 ```
 Output
@@ -658,13 +641,13 @@ The max method returns the maximum value of a given key:
 
 ```$xslt
 $max = make_data([['foo' => 10], ['foo' => 20]])->max('foo');
-$max = make_data([['foo' => 10], ['foo' => 20]])->max('foo');
+$max = make_data([['foo' => 10], ['foo' => 30]])->max('foo');
 
 ```
 Output
 ```$xslt
  20
- 5
+ 30
 ```
 ### `median()`
 The median method returns the median value of a given key:
@@ -677,12 +660,9 @@ Output
  15
 ```
 ### `merge()`
-The chunk method breaks  into multiple
 ```$xslt
 $make_data = make_data(['product_id' => 1, 'price' => 100]);
-
 $merged = $make_data->merge(['price' => 200, 'discount' => false]);
-
 $merged->all();
 ```
 Output
@@ -693,7 +673,6 @@ Output
 The min method returns the minimum value of a given key:
 ```$xslt
 $min = make_data([['foo' => 10], ['foo' => 20]])->min('foo');
-
 $min = make_data([1, 2, 3, 4, 5])->min();
 
 ```
@@ -706,11 +685,7 @@ Output
 The mode method returns the mode value of a given key:
 ```$xslt
 $mode = make_data([['foo' => 10], ['foo' => 10], ['foo' => 20], ['foo' => 40]])->mode('foo');
-
-
 $mode = make_data([1, 1, 2, 4])->mode();
-
-$chunks->toArray();
 ```
 Output
 ```$xslt
@@ -731,7 +706,6 @@ Output
  ['product_id' => 1, 'name' => 'Desk']
 ```
 ### `pad()`
-The chunk method breaks  into multiple
 ```$xslt
 $make_data = make_data(['A', 'B', 'C']);
 
@@ -743,4 +717,676 @@ $filtered->all();
 Output
 ```$xslt
  ['A', 'B', 'C', 0, 0]
-`
+```
+### `partition()`
+The partition method may be combined with the list PHP function to separate elements that pass a given truth test from those that do not:
+```$xslt
+$make_date = make_date[1, 2, 3, 4, 5, 6]);
+
+list($underThree, $equalOrAboveThree) = $make_date->partition(function ($i) {
+    return $i < 3;
+});
+
+$underThree->all();
+$equalOrAboveThree->all();
+
+```
+Output
+```$xslt
+ [1, 2]
+ [3, 4, 5, 6]
+ 
+```
+### `pipe()`
+The pipe method passes the data array to the given callback and returns the result:
+```$xslt
+$make_date = make_date[1, 2, 3]);
+
+$piped = $make_date->pipe(function ($make_date) {
+    return $make_date->sum();
+});
+```
+Output
+```$xslt
+ 6
+```
+### `pluck()`
+The pluck method retrieves all of the values for a given key:
+```$xslt
+$make_date = make_date[
+    ['product_id' => 'prod-100', 'name' => 'Desk'],
+    ['product_id' => 'prod-200', 'name' => 'Chair'],
+]);
+
+$plucked = $make_date->pluck('name');
+
+$plucked->all();
+```
+Output
+```$xslt
+ ['Desk', 'Chair']
+```
+### `pop()`
+The pop method removes and returns the last item from the data array:
+```$xslt
+$make_date = make_date[1, 2, 3, 4, 5]);
+$make_date->pop();
+$make_date->all();
+```
+Output
+```$xslt
+ 5
+ [1, 2, 3, 4]
+```
+### `prepend()`
+The prepend method adds an item to the beginning of the data array:
+
+```$xslt
+$make_date = make_date[1, 2, 3, 4, 5]);
+
+$make_date->prepend(0);
+
+$make_date->all();
+
+```
+Output
+```$xslt
+ [0, 1, 2, 3, 4, 5]
+```
+### `pull()`
+The pull method removes and returns an item from the data array by its key:
+
+```$xslt
+$make_date = make_date['product_id' => 'prod-100', 'name' => 'Desk']);
+$make_date->pull('name');
+$make_date->all();
+
+
+```
+Output
+```$xslt
+ 'Desk'
+ ['product_id' => 'prod-100']
+```
+### `push()`
+The push method appends an item to the end of the data array:
+```$xslt
+$make_date = make_date[1, 2, 3, 4]);
+$make_date->push(5);
+$make_date->all();
+```
+Output
+```$xslt
+ [1, 2, 3, 4, 5]
+```
+### `put()`
+The put method sets the given key and value in the data array:
+```$xslt
+$make_date = make_date['product_id' => 1, 'name' => 'Desk']);
+$make_date->put('price', 100);
+$make_date->all();
+```
+Output
+```$xslt
+ ['product_id' => 1, 'name' => 'Desk', 'price' => 100]
+```
+### `random()`
+The random method returns a random item from the data array:
+```$xslt
+$make_date = make_date[1, 2, 3, 4, 5]);
+$make_date->random();
+```
+Output
+```$xslt
+ 4 - (retrieved randomly)
+```
+### `reduce()`
+The reduce method reduces the data array to a single value, passing the result of each iteration into the subsequent iteration:
+```$xslt
+$make_date = make_date[1, 2, 3]);
+
+$total = $make_date->reduce(function ($carry, $item) {
+    return $carry + $item;
+});
+
+```
+Output
+```$xslt
+ 6
+```
+### `reject()`
+The reject method filters the data array using the given callback. The callback should return true if the item should be removed from the resulting data array:
+```$xslt
+$make_date = make_date[1, 2, 3, 4]);
+
+$filtered = $make_date->reject(function ($value, $key) {
+    return $value > 2;
+});
+
+$filtered->all();
+```
+Output
+```$xslt
+ [1, 2]
+```
+### `reverse()`
+The reverse method reverses the order of the data array's items, preserving the original keys:
+
+```$xslt
+$make_date = make_date['a', 'b', 'c', 'd', 'e']);
+
+$reversed = $make_date->reverse();
+
+$reversed->all();
+
+```
+Output
+```$xslt
+ [
+         4 => 'e',
+         3 => 'd',
+         2 => 'c',
+         1 => 'b',
+         0 => 'a',
+     ]
+```
+### `search()`
+The search method searches the data array for the given value and returns its key if found. If the item is not found, false is returned.
+```$xslt
+$make_date = make_date[2, 4, 6, 8]);
+
+$make_date->search(4);
+```
+Output
+```$xslt
+ 1
+```
+### `shift()`
+The shift method removes and returns the first item from the data array:
+```$xslt
+$make_date = make_date[1, 2, 3, 4, 5]);
+$make_date->shift();
+$make_date->all();
+```
+Output
+```$xslt
+1
+ [2, 3, 4, 5]
+```
+### `shuffle()`
+The shuffle method randomly shuffles the items in the data array:
+```$xslt
+$make_date = make_date[1, 2, 3, 4, 5]);
+
+$shuffled = $make_date->shuffle();
+
+$shuffled->all();
+
+```
+Output
+```$xslt
+ [3, 2, 5, 1, 4] - (generated randomly)
+```
+### `slice()`
+The slice method returns a slice of the data array starting at the given index:
+
+```$xslt
+$make_date = make_date[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+$slice = $make_date->slice(4);
+
+$slice->all();
+```
+Output
+```$xslt
+ [5, 6, 7, 8, 9, 10]
+```
+### `sort()`
+The sort method sorts the data array. The sorted data array keeps the original array keys, so in this example we'll use the values method to reset the keys to consecutively numbered indexes:
+```$xslt
+$make_date = make_date[5, 3, 1, 2, 4]);
+
+$sorted = $make_date->sort();
+
+$sorted->values()->all();
+```
+Output
+```$xslt
+ [1, 2, 3, 4, 5]
+```
+### `sortBy()`
+```$xslt
+$make_date = make_date[
+    ['name' => 'Desk', 'price' => 200],
+    ['name' => 'Chair', 'price' => 100],
+    ['name' => 'Bookcase', 'price' => 150],
+]);
+
+$sorted = $make_date->sortBy('price');
+
+$sorted->values()->all();
+```
+Output
+```$xslt
+ [
+         ['name' => 'Chair', 'price' => 100],
+         ['name' => 'Bookcase', 'price' => 150],
+         ['name' => 'Desk', 'price' => 200],
+     ]
+```
+### `sortKeys()`
+The sortKeys method sorts the data array by the keys of the underlying associative array:
+```$xslt
+$make_date = make_date[
+    'id' => 22345,
+    'first' => 'John',
+    'last' => 'Doe',
+]);
+
+$sorted = $make_date->sortKeys();
+
+$sorted->all();
+```
+Output
+```$xslt
+  [
+         'first' => 'John',
+         'id' => 22345,
+         'last' => 'Doe',
+     ]
+```
+### `splice()`
+The splice method removes and returns a slice of items starting at the specified index:
+```$xslt
+$make_date = make_date[1, 2, 3, 4, 5]);
+
+$chunk = $make_date->splice(2);
+
+$chunk->all();
+```
+Output
+```$xslt
+ [3, 4, 5]
+```
+### `split()`
+The split method breaks a data array into the given number of groups:
+
+```$xslt
+data array = make_date[1, 2, 3, 4, 5]);
+
+$groups = $make_date->split(3);
+
+$groups->toArray();
+```
+Output
+```$xslt
+ [[1, 2], [3, 4], [5]]
+```
+### `sum()`
+The sum method returns the sum of all items in the data array:
+```$xslt
+.............................
+make_date[1, 2, 3, 4, 5])->sum();
+.............................
+$make_date = make_date[
+    ['name' => 'JavaScript: The Good Parts', 'pages' => 176],
+    ['name' => 'JavaScript: The Definitive Guide', 'pages' => 1096],
+]);
+
+$make_date->sum('pages');
+.............................
+
+data array = make_date[
+    ['name' => 'Chair', 'colors' => ['Black']],
+    ['name' => 'Desk', 'colors' => ['Black', 'Mahogany']],
+    ['name' => 'Bookcase', 'colors' => ['Red', 'Beige', 'Brown']],
+]);
+
+$make_date->sum(function ($product) {
+    return count($product['colors']);
+});
+```
+Output
+```$xslt
+ 15
+ 1272
+ 6
+```
+### `take()`
+The take method returns a new data array with the specified number of items:
+```$xslt
+$make_date = make_date[0, 1, 2, 3, 4, 5]);
+
+$chunk = $make_date->take(3);
+
+$chunk->all();
+```
+Output
+```$xslt
+ [0, 1, 2]
+```
+### `tap()`
+The tap method passes the data array to the given callback, allowing you to "tap" into the data array at a specific point and do something with the items while not affecting the data array itself:
+```$xslt
+make_date[2, 4, 3, 1, 5])
+    ->sort()
+    ->tap(function ($make_date) {
+        Log::debug('Values after sorting', $make_date->values()->toArray());
+    })
+    ->shift();
+```
+Output
+```$xslt
+ 1
+```
+### `times()`
+The static times method creates a new data array by invoking the callback a given amount of times:
+```$xslt
+$make_date = Collection::times(10, function ($number) {
+    return $number * 9;
+});
+
+$make_date->all();
+```
+Output
+```$xslt
+ [9, 18, 27, 36, 45, 54, 63, 72, 81, 90]
+```
+### `toJson()`
+The toJson method converts the data array into a JSON serialized string:
+```$xslt
+$make_date = make_date['name' => 'Desk', 'price' => 200]);
+
+$make_date->toJson();
+```
+Output
+```$xslt
+ '{"name":"Desk", "price":200}'
+```
+### `transform()`
+The transform method iterates over the data array and calls the given callback with each item in the data array. The items in the data array will be replaced by the values returned by the callback:
+```$xslt
+$make_date = make_date[1, 2, 3, 4, 5]);
+
+$make_date->transform(function ($item, $key) {
+    return $item * 2;
+});
+
+$make_date->all();
+```
+Output
+```$xslt
+ [2, 4, 6, 8, 10]
+```
+### `union()`
+union()
+
+The union method adds the given array to the data array. If the given array contains keys that are already in the original data array, the original data array's values will be preferred:
+```$xslt
+$make_date = make_date[1 => ['a'], 2 => ['b']]);
+
+$union = $make_date->union([3 => ['c'], 1 => ['b']]);
+
+$union->all();
+
+```
+Output
+```$xslt
+ [1 => ['a'], 2 => ['b'], 3 => ['c']]
+```
+### `unique()`
+The only method returns the items in the data array with the specified keys:
+```$xslt
+data array = make_date[1, 1, 2, 2, 3, 4, 2]);
+
+$unique = $make_date->unique();
+
+$unique->values()->all();
+
+$make_date = make_date[
+    ['name' => 'iPhone 6', 'brand' => 'Apple', 'type' => 'phone'],
+    ['name' => 'iPhone 5', 'brand' => 'Apple', 'type' => 'phone'],
+    ['name' => 'Apple Watch', 'brand' => 'Apple', 'type' => 'watch'],
+    ['name' => 'Galaxy S6', 'brand' => 'Samsung', 'type' => 'phone'],
+    ['name' => 'Galaxy Gear', 'brand' => 'Samsung', 'type' => 'watch'],
+]);
+
+$unique = $make_date->unique('brand');
+
+$unique->values()->all();
+```
+Output
+```$xslt
+ [1, 2, 3, 4]
+  [
+         ['name' => 'iPhone 6', 'brand' => 'Apple', 'type' => 'phone'],
+         ['name' => 'Galaxy S6', 'brand' => 'Samsung', 'type' => 'phone'],
+     ]
+```
+### `unless()`
+The unless method will execute the given callback unless the first argument given to the method evaluates to true:
+```$xslt
+$make_date = make_date[1, 2, 3]);
+
+$make_date->unless(true, function ($make_date) {
+    return $make_date->push(4);
+});
+
+$make_date->unless(false, function ($make_date) {
+    return $make_date->push(5);
+});
+
+$make_date->all();
+```
+Output
+```$xslt
+ [1, 2, 3, 5]
+```
+### `values()`
+The values method returns a new data array with the keys reset to consecutive integers:
+```$xslt
+$make_date = make_date[
+    10 => ['product' => 'Desk', 'price' => 200],
+    11 => ['product' => 'Desk', 'price' => 200]
+]);
+
+$values = $make_date->values();
+
+$values->all();
+```
+Output
+```$xslt
+ [
+         0 => ['product' => 'Desk', 'price' => 200],
+         1 => ['product' => 'Desk', 'price' => 200],
+     ]
+```
+### `when()`
+The when method will execute the given callback when the first argument given to the method evaluates to true:
+```$xslt
+$make_date = make_date[1, 2, 3]);
+
+$make_date->when(true, function ($make_date) {
+    return $make_date->push(4);
+});
+
+$make_date->when(false, function ($make_date) {
+    return $make_date->push(5);
+});
+
+$make_date->all();
+```
+Output
+```$xslt
+  [1, 2, 3, 4]
+```
+### `whenEmpty()`
+The whenEmpty method will execute the given callback when the data array is empty:
+```$xslt
+$make_date = make_date['michael', 'tom']);
+
+$make_date->whenEmpty(function ($make_date) {
+    return $make_date->push('adam');
+});
+
+$make_date->all();
+
+// ['michael', 'tom']
+
+$make_date = make_date);
+
+$make_date->whenEmpty(function ($make_date) {
+    return $make_date->push('adam');
+});
+
+$make_date->all();
+```
+Output
+```$xslt
+ ['adam']
+```
+### `whenNotEmpty()`
+The whenNotEmpty method will execute the given callback when the data array is not empty:
+```$xslt
+$make_date = make_date['michael', 'tom']);
+
+$make_date->whenNotEmpty(function ($make_date) {
+    return $make_date->push('adam');
+});
+
+$make_date->all();
+```
+Output
+```$xslt
+ ['michael', 'tom', 'adam']
+```
+### `where()`
+The where method filters the data array by a given key / value pair:
+```$xslt
+$make_date = make_date[
+    ['product' => 'Desk', 'price' => 200],
+    ['product' => 'Chair', 'price' => 100],
+    ['product' => 'Bookcase', 'price' => 150],
+    ['product' => 'Door', 'price' => 100],
+]);
+
+$filtered = $make_date->where('price', 100);
+
+$filtered->all();
+```
+Output
+```$xslt
+ [
+         ['product' => 'Chair', 'price' => 100],
+         ['product' => 'Door', 'price' => 100],
+     ]
+```
+### `whereBetween()`
+The whereBetween method filters the data array within a given range:
+
+```$xslt
+$make_date = make_date[
+    ['product' => 'Desk', 'price' => 200],
+    ['product' => 'Chair', 'price' => 80],
+    ['product' => 'Bookcase', 'price' => 150],
+    ['product' => 'Pencil', 'price' => 30],
+    ['product' => 'Door', 'price' => 100],
+]);
+
+$filtered = $make_date->whereBetween('price', [100, 200]);
+
+$filtered->all();
+```
+Output
+```$xslt
+ [
+         ['product' => 'Desk', 'price' => 200],
+         ['product' => 'Bookcase', 'price' => 150],
+         ['product' => 'Door', 'price' => 100],
+     ]
+```
+### `whereIn()`
+The whereIn method filters the data array by a given key / value contained within the given array:
+```$xslt
+$make_date = make_date[
+    ['product' => 'Desk', 'price' => 200],
+    ['product' => 'Chair', 'price' => 100],
+    ['product' => 'Bookcase', 'price' => 150],
+    ['product' => 'Door', 'price' => 100],
+]);
+
+$filtered = $make_date->whereIn('price', [150, 200]);
+
+$filtered->all();
+```
+Output
+```$xslt
+ [
+         ['product' => 'Bookcase', 'price' => 150],
+         ['product' => 'Desk', 'price' => 200],
+     ]
+```
+### `whereNotBetween()`
+The whereNotBetween method filters the data array within a given range:
+```$xslt
+$make_date = make_date[
+    ['product' => 'Desk', 'price' => 200],
+    ['product' => 'Chair', 'price' => 80],
+    ['product' => 'Bookcase', 'price' => 150],
+    ['product' => 'Pencil', 'price' => 30],
+    ['product' => 'Door', 'price' => 100],
+]);
+
+$filtered = $make_date->whereNotBetween('price', [100, 200]);
+
+$filtered->all();
+```
+Output
+```$xslt
+ [
+         ['product' => 'Chair', 'price' => 80],
+         ['product' => 'Pencil', 'price' => 30],
+     ]
+```
+### `whereNotIn()`
+The whereNotIn method filters the data array by a given key / value not contained within the given array:
+```$xslt
+$make_date = make_date[
+    ['product' => 'Desk', 'price' => 200],
+    ['product' => 'Chair', 'price' => 100],
+    ['product' => 'Bookcase', 'price' => 150],
+    ['product' => 'Door', 'price' => 100],
+]);
+
+$filtered = $make_date->whereNotIn('price', [150, 200]);
+
+$filtered->all();
+```
+Output
+```$xslt
+ ['product_id' => 1, 'name' => 'Desk']
+```
+### `wrap()`
+The static wrap method wraps the given value in a data array when applicable:
+```$xslt
+$make_date = Collection::wrap('John Doe');
+$make_date->all();
+
+```
+Output
+```$xslt
+  ['John Doe']
+```
+### `zip()`
+The zip method merges together the values of the given array with the values of the original data array at the corresponding index:
+```$xslt
+$make_date = make_date['Chair', 'Desk']);
+
+$zipped = $make_date->zip([100, 200]);
+
+$zipped->all();
+```
+Output
+```$xslt
+ [['Chair', 100], ['Desk', 200]]
+```

@@ -1,6 +1,18 @@
 <?php
 require '../vendor/autoload.php';
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-$average = make_data([['foo' => 10], ['foo' => 10], ['foo' => 20], ['foo' => 40]])->avg('foo');
+$make_data = make_data(['A', 'B', 'C']);
 
-echo "The average: ".$average;
+$filtered = $make_data->pad(5, 0);
+
+$filtered->all();
+echo '<pre>';
+print_r($filtered->all());
+echo '</pre>';
+exit;
+
+
+

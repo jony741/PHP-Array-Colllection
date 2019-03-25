@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Helper\\Arr' => $baseDir . '/Helper/Arr.php',
     'Helper\\Arrayable' => $baseDir . '/Helper/Arrayable.php',
+    'Helper\\Helpers' => $baseDir . '/Helper/Helpers.php',
     'Helper\\Jsonable' => $baseDir . '/Helper/Jsonable.php',
     'Traits\\Macroable' => $baseDir . '/Traits/Macroable.php',
 );

@@ -1,6 +1,7 @@
 <?php
 namespace array_master;
 
+
 use stdClass;
 use Countable;
 use Exception;
@@ -15,6 +16,8 @@ use Traits\Macroable;
 use Helper\Arr;
 use Helper\Jsonable;
 use Helper\Arrayable;
+use Helper\Helpers;
+
 
 
 class Array_master implements ArrayAccess, Arrayable, Countable, IteratorAggregate, Jsonable, JsonSerializable
@@ -263,7 +266,7 @@ class Array_master implements ArrayAccess, Arrayable, Countable, IteratorAggrega
     {
         if (func_num_args() === 2) {
             return $this->contains(function ($item) use ($key, $value) {
-                return $this->_data_get($item, $key) === $value;
+                return Helpers::data_get($item, $key) === $value;
             });
         }
 
@@ -605,7 +608,7 @@ class Array_master implements ArrayAccess, Arrayable, Countable, IteratorAggrega
         }
 
         return function ($item) use ($key, $operator, $value) {
-            $retrieved = $this->_data_get($item, $key);
+            $retrieved = Helpers::data_get($item, $key);
 
             $strings = array_filter([$retrieved, $value], function ($value) {
                 return is_string($value) || (is_object($value) && method_exists($value, '__toString'));
@@ -656,7 +659,7 @@ class Array_master implements ArrayAccess, Arrayable, Countable, IteratorAggrega
         $values = $this->getArrayableItems($values);
 
         return $this->filter(function ($item) use ($key, $values, $strict) {
-            return in_array($this->_data_get($item, $key), $values, $strict);
+            return in_array(Helpers::data_get($item, $key), $values, $strict);
         });
     }
 
@@ -694,7 +697,7 @@ class Array_master implements ArrayAccess, Arrayable, Countable, IteratorAggrega
     public function whereNotBetween($key, $values)
     {
         return $this->filter(function ($item) use ($key, $values) {
-            return $this->_data_get($item, $key) < reset($values) || $this->_data_get($item, $key) > end($values);
+            return Helpers::data_get($item, $key) < reset($values) || Helpers::data_get($item, $key) > end($values);
         });
     }
 
@@ -711,7 +714,7 @@ class Array_master implements ArrayAccess, Arrayable, Countable, IteratorAggrega
         $values = $this->getArrayableItems($values);
 
         return $this->reject(function ($item) use ($key, $values, $strict) {
-            return in_array($this->_data_get($item, $key), $values, $strict);
+            return in_array(Helpers::data_get($item, $key), $values, $strict);
         });
     }
 
@@ -1801,7 +1804,7 @@ class Array_master implements ArrayAccess, Arrayable, Countable, IteratorAggrega
         }
 
         return function ($item) use ($value) {
-            return $this->_data_get($item, $value);
+            return Helpers::data_get($item, $value);
         };
     }
 
@@ -2067,40 +2070,4 @@ class Array_master implements ArrayAccess, Arrayable, Countable, IteratorAggrega
         return new HigherOrderCollectionProxy($this, $key);
     }
 
-
-    private function _data_get($target, $key, $default = null){
-        if (is_null($key)) {
-            return $target;
-        }
-
-        $key = is_array($key) ? $key : explode('.', $key);
-
-        while (! is_null($segment = array_shift($key))) {
-            if ($segment === '*') {
-                if ($target instanceof Collection) {
-                    $target = $target->all();
-                } elseif (! is_array($target)) {
-                    return value($default);
-                }
-
-                $result = [];
-
-                foreach ($target as $item) {
-                    $result[] = $this->_data_get($item, $key);
-                }
-
-                return in_array('*', $key) ? Arr::collapse($result) : $result;
-            }
-
-            if (Arr::accessible($target) && Arr::exists($target, $segment)) {
-                $target = $target[$segment];
-            } elseif (is_object($target) && isset($target->{$segment})) {
-                $target = $target->{$segment};
-            } else {
-                return value($default);
-            }
-        }
-
-        return $target;
-    }
 }
