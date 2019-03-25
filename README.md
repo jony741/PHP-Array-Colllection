@@ -721,7 +721,7 @@ Output
 ### `partition()`
 The partition method may be combined with the list PHP function to separate elements that pass a given truth test from those that do not:
 ```$xslt
-$make_data = make_data[1, 2, 3, 4, 5, 6]);
+$make_data = make_data([1, 2, 3, 4, 5, 6]);
 
 list($underThree, $equalOrAboveThree) = $make_data->partition(function ($i) {
     return $i < 3;
@@ -740,7 +740,7 @@ Output
 ### `pipe()`
 The pipe method passes the data array to the given callback and returns the result:
 ```$xslt
-$make_data = make_data[1, 2, 3]);
+$make_data = make_data([1, 2, 3]);
 
 $piped = $make_data->pipe(function ($make_data) {
     return $make_data->sum();
@@ -753,7 +753,7 @@ Output
 ### `pluck()`
 The pluck method retrieves all of the values for a given key:
 ```$xslt
-$make_data = make_data[
+$make_data = make_data([
     ['product_id' => 'prod-100', 'name' => 'Desk'],
     ['product_id' => 'prod-200', 'name' => 'Chair'],
 ]);
@@ -769,7 +769,7 @@ Output
 ### `pop()`
 The pop method removes and returns the last item from the data array:
 ```$xslt
-$make_data = make_data[1, 2, 3, 4, 5]);
+$make_data = make_data([1, 2, 3, 4, 5]);
 $make_data->pop();
 $make_data->all();
 ```
@@ -782,7 +782,7 @@ Output
 The prepend method adds an item to the beginning of the data array:
 
 ```$xslt
-$make_data = make_data[1, 2, 3, 4, 5]);
+$make_data = make_data([1, 2, 3, 4, 5]);
 
 $make_data->prepend(0);
 
@@ -797,7 +797,7 @@ Output
 The pull method removes and returns an item from the data array by its key:
 
 ```$xslt
-$make_data = make_data['product_id' => 'prod-100', 'name' => 'Desk']);
+$make_data = make_data(['product_id' => 'prod-100', 'name' => 'Desk']);
 $make_data->pull('name');
 $make_data->all();
 
@@ -811,7 +811,7 @@ Output
 ### `push()`
 The push method appends an item to the end of the data array:
 ```$xslt
-$make_data = make_data[1, 2, 3, 4]);
+$make_data = make_data([1, 2, 3, 4]);
 $make_data->push(5);
 $make_data->all();
 ```
@@ -822,7 +822,7 @@ Output
 ### `put()`
 The put method sets the given key and value in the data array:
 ```$xslt
-$make_data = make_data['product_id' => 1, 'name' => 'Desk']);
+$make_data = make_data(['product_id' => 1, 'name' => 'Desk']);
 $make_data->put('price', 100);
 $make_data->all();
 ```
@@ -833,7 +833,7 @@ Output
 ### `random()`
 The random method returns a random item from the data array:
 ```$xslt
-$make_data = make_data[1, 2, 3, 4, 5]);
+$make_data = make_data([1, 2, 3, 4, 5]);
 $make_data->random();
 ```
 Output
@@ -843,7 +843,7 @@ Output
 ### `reduce()`
 The reduce method reduces the data array to a single value, passing the result of each iteration into the subsequent iteration:
 ```$xslt
-$make_data = make_data[1, 2, 3]);
+$make_data = make_data([1, 2, 3]);
 
 $total = $make_data->reduce(function ($carry, $item) {
     return $carry + $item;
@@ -857,7 +857,7 @@ Output
 ### `reject()`
 The reject method filters the data array using the given callback. The callback should return true if the item should be removed from the resulting data array:
 ```$xslt
-$make_data = make_data[1, 2, 3, 4]);
+$make_data = make_data([1, 2, 3, 4]);
 
 $filtered = $make_data->reject(function ($value, $key) {
     return $value > 2;
@@ -873,7 +873,7 @@ Output
 The reverse method reverses the order of the data array's items, preserving the original keys:
 
 ```$xslt
-$make_data = make_data['a', 'b', 'c', 'd', 'e']);
+$make_data = make_data(['a', 'b', 'c', 'd', 'e']);
 
 $reversed = $make_data->reverse();
 
@@ -893,7 +893,7 @@ Output
 ### `search()`
 The search method searches the data array for the given value and returns its key if found. If the item is not found, false is returned.
 ```$xslt
-$make_data = make_data[2, 4, 6, 8]);
+$make_data = make_data([2, 4, 6, 8]);
 
 $make_data->search(4);
 ```
@@ -904,7 +904,7 @@ Output
 ### `shift()`
 The shift method removes and returns the first item from the data array:
 ```$xslt
-$make_data = make_data[1, 2, 3, 4, 5]);
+$make_data = make_data([1, 2, 3, 4, 5]);
 $make_data->shift();
 $make_data->all();
 ```
@@ -916,7 +916,7 @@ Output
 ### `shuffle()`
 The shuffle method randomly shuffles the items in the data array:
 ```$xslt
-$make_data = make_data[1, 2, 3, 4, 5]);
+$make_data = make_data([1, 2, 3, 4, 5]);
 
 $shuffled = $make_data->shuffle();
 
@@ -931,7 +931,7 @@ Output
 The slice method returns a slice of the data array starting at the given index:
 
 ```$xslt
-$make_data = make_data[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+$make_data = make_data([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
 $slice = $make_data->slice(4);
 
@@ -944,7 +944,7 @@ Output
 ### `sort()`
 The sort method sorts the data array. The sorted data array keeps the original array keys, so in this example we'll use the values method to reset the keys to consecutively numbered indexes:
 ```$xslt
-$make_data = make_data[5, 3, 1, 2, 4]);
+$make_data = make_data([5, 3, 1, 2, 4]);
 
 $sorted = $make_data->sort();
 
@@ -956,7 +956,7 @@ Output
 ```
 ### `sortBy()`
 ```$xslt
-$make_data = make_data[
+$make_data = make_data([
     ['name' => 'Desk', 'price' => 200],
     ['name' => 'Chair', 'price' => 100],
     ['name' => 'Bookcase', 'price' => 150],
@@ -977,7 +977,7 @@ Output
 ### `sortKeys()`
 The sortKeys method sorts the data array by the keys of the underlying associative array:
 ```$xslt
-$make_data = make_data[
+$make_data = make_data([
     'id' => 22345,
     'first' => 'John',
     'last' => 'Doe',
@@ -998,7 +998,7 @@ Output
 ### `splice()`
 The splice method removes and returns a slice of items starting at the specified index:
 ```$xslt
-$make_data = make_data[1, 2, 3, 4, 5]);
+$make_data = make_data([1, 2, 3, 4, 5]);
 
 $chunk = $make_data->splice(2);
 
@@ -1012,7 +1012,7 @@ Output
 The split method breaks a data array into the given number of groups:
 
 ```$xslt
-data array = make_data[1, 2, 3, 4, 5]);
+data array = make_data([1, 2, 3, 4, 5]);
 
 $groups = $make_data->split(3);
 
@@ -1026,9 +1026,9 @@ Output
 The sum method returns the sum of all items in the data array:
 ```$xslt
 .............................
-make_data[1, 2, 3, 4, 5])->sum();
+make_data([1, 2, 3, 4, 5])->sum();
 .............................
-$make_data = make_data[
+$make_data = make_data([
     ['name' => 'JavaScript: The Good Parts', 'pages' => 176],
     ['name' => 'JavaScript: The Definitive Guide', 'pages' => 1096],
 ]);
@@ -1036,7 +1036,7 @@ $make_data = make_data[
 $make_data->sum('pages');
 .............................
 
-data array = make_data[
+data array = make_data([
     ['name' => 'Chair', 'colors' => ['Black']],
     ['name' => 'Desk', 'colors' => ['Black', 'Mahogany']],
     ['name' => 'Bookcase', 'colors' => ['Red', 'Beige', 'Brown']],
@@ -1055,7 +1055,7 @@ Output
 ### `take()`
 The take method returns a new data array with the specified number of items:
 ```$xslt
-$make_data = make_data[0, 1, 2, 3, 4, 5]);
+$make_data = make_data([0, 1, 2, 3, 4, 5]);
 
 $chunk = $make_data->take(3);
 
@@ -1068,7 +1068,7 @@ Output
 ### `tap()`
 The tap method passes the data array to the given callback, allowing you to "tap" into the data array at a specific point and do something with the items while not affecting the data array itself:
 ```$xslt
-make_data[2, 4, 3, 1, 5])
+make_data([2, 4, 3, 1, 5])
     ->sort()
     ->tap(function ($make_data) {
         Log::debug('Values after sorting', $make_data->values()->toArray());
@@ -1095,7 +1095,7 @@ Output
 ### `toJson()`
 The toJson method converts the data array into a JSON serialized string:
 ```$xslt
-$make_data = make_data['name' => 'Desk', 'price' => 200]);
+$make_data = make_data(['name' => 'Desk', 'price' => 200]);
 
 $make_data->toJson();
 ```
@@ -1106,7 +1106,7 @@ Output
 ### `transform()`
 The transform method iterates over the data array and calls the given callback with each item in the data array. The items in the data array will be replaced by the values returned by the callback:
 ```$xslt
-$make_data = make_data[1, 2, 3, 4, 5]);
+$make_data = make_data([1, 2, 3, 4, 5]);
 
 $make_data->transform(function ($item, $key) {
     return $item * 2;
@@ -1123,7 +1123,7 @@ union()
 
 The union method adds the given array to the data array. If the given array contains keys that are already in the original data array, the original data array's values will be preferred:
 ```$xslt
-$make_data = make_data[1 => ['a'], 2 => ['b']]);
+$make_data = make_data([1 => ['a'], 2 => ['b']]);
 
 $union = $make_data->union([3 => ['c'], 1 => ['b']]);
 
@@ -1137,13 +1137,13 @@ Output
 ### `unique()`
 The only method returns the items in the data array with the specified keys:
 ```$xslt
-data array = make_data[1, 1, 2, 2, 3, 4, 2]);
+data array = make_data([1, 1, 2, 2, 3, 4, 2]);
 
 $unique = $make_data->unique();
 
 $unique->values()->all();
 
-$make_data = make_data[
+$make_data = make_data([
     ['name' => 'iPhone 6', 'brand' => 'Apple', 'type' => 'phone'],
     ['name' => 'iPhone 5', 'brand' => 'Apple', 'type' => 'phone'],
     ['name' => 'Apple Watch', 'brand' => 'Apple', 'type' => 'watch'],
@@ -1166,7 +1166,7 @@ Output
 ### `unless()`
 The unless method will execute the given callback unless the first argument given to the method evaluates to true:
 ```$xslt
-$make_data = make_data[1, 2, 3]);
+$make_data = make_data([1, 2, 3]);
 
 $make_data->unless(true, function ($make_data) {
     return $make_data->push(4);
@@ -1185,7 +1185,7 @@ Output
 ### `values()`
 The values method returns a new data array with the keys reset to consecutive integers:
 ```$xslt
-$make_data = make_data[
+$make_data = make_data([
     10 => ['product' => 'Desk', 'price' => 200],
     11 => ['product' => 'Desk', 'price' => 200]
 ]);
@@ -1204,7 +1204,7 @@ Output
 ### `when()`
 The when method will execute the given callback when the first argument given to the method evaluates to true:
 ```$xslt
-$make_data = make_data[1, 2, 3]);
+$make_data = make_data([1, 2, 3]);
 
 $make_data->when(true, function ($make_data) {
     return $make_data->push(4);
@@ -1223,7 +1223,7 @@ Output
 ### `whenEmpty()`
 The whenEmpty method will execute the given callback when the data array is empty:
 ```$xslt
-$make_data = make_data['michael', 'tom']);
+$make_data = make_data(['michael', 'tom']);
 
 $make_data->whenEmpty(function ($make_data) {
     return $make_data->push('adam');
@@ -1248,7 +1248,7 @@ Output
 ### `whenNotEmpty()`
 The whenNotEmpty method will execute the given callback when the data array is not empty:
 ```$xslt
-$make_data = make_data['michael', 'tom']);
+$make_data = make_data(['michael', 'tom']);
 
 $make_data->whenNotEmpty(function ($make_data) {
     return $make_data->push('adam');
@@ -1263,7 +1263,7 @@ Output
 ### `where()`
 The where method filters the data array by a given key / value pair:
 ```$xslt
-$make_data = make_data[
+$make_data = make_data([
     ['product' => 'Desk', 'price' => 200],
     ['product' => 'Chair', 'price' => 100],
     ['product' => 'Bookcase', 'price' => 150],
@@ -1285,7 +1285,7 @@ Output
 The whereBetween method filters the data array within a given range:
 
 ```$xslt
-$make_data = make_data[
+$make_data = make_data([
     ['product' => 'Desk', 'price' => 200],
     ['product' => 'Chair', 'price' => 80],
     ['product' => 'Bookcase', 'price' => 150],
@@ -1308,7 +1308,7 @@ Output
 ### `whereIn()`
 The whereIn method filters the data array by a given key / value contained within the given array:
 ```$xslt
-$make_data = make_data[
+$make_data = make_data([
     ['product' => 'Desk', 'price' => 200],
     ['product' => 'Chair', 'price' => 100],
     ['product' => 'Bookcase', 'price' => 150],
@@ -1329,7 +1329,7 @@ Output
 ### `whereNotBetween()`
 The whereNotBetween method filters the data array within a given range:
 ```$xslt
-$make_data = make_data[
+$make_data = make_data([
     ['product' => 'Desk', 'price' => 200],
     ['product' => 'Chair', 'price' => 80],
     ['product' => 'Bookcase', 'price' => 150],
@@ -1351,7 +1351,7 @@ Output
 ### `whereNotIn()`
 The whereNotIn method filters the data array by a given key / value not contained within the given array:
 ```$xslt
-$make_data = make_data[
+$make_data = make_data([
     ['product' => 'Desk', 'price' => 200],
     ['product' => 'Chair', 'price' => 100],
     ['product' => 'Bookcase', 'price' => 150],
@@ -1380,7 +1380,7 @@ Output
 ### `zip()`
 The zip method merges together the values of the given array with the values of the original data array at the corresponding index:
 ```$xslt
-$make_data = make_data['Chair', 'Desk']);
+$make_data = make_data(['Chair', 'Desk']);
 
 $zipped = $make_data->zip([100, 200]);
 

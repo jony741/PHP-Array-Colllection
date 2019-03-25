@@ -4,17 +4,14 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$make_date = make_data([1, 2, 3, 4, 5, 6]);
+$make_data = make_data([1, 2, 3]);
 
-list($underThree, $equalOrAboveThree) = $make_date->partition(function ($i) {
-    return $i < 3;
+$piped = $make_data->pipe(function ($make_data) {
+    return $make_data->sum();
 });
 
-$underThree->all();
-$equalOrAboveThree->all();
-
 echo '<pre>';
-print_r($underThree->all());
+print_r($piped);
 echo '</pre>';
 exit;
 
