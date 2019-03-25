@@ -1,0 +1,6 @@
+{
+  "autoload":{
+    "classmap":["Helper","Traits"],
+    "files":["Array_master.php","helper.php"]
+  }
+}
