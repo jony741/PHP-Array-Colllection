@@ -346,7 +346,7 @@ class Arr
         }
 
         if (strpos($key, '.') === false) {
-            return $array[$key] ?? value($default);
+            return $array[$key] ?? Helpers::value($default);
         }
 
         foreach (explode('.', $key) as $segment) {

@@ -4,16 +4,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$make_data = make_data([1, 2, 3]);
+$average = make_data([['foo' => 10], ['foo' => 10], ['foo' => 20], ['foo' => 40]])->avg('foo');
 
-$piped = $make_data->pipe(function ($make_data) {
-    return $make_data->sum();
-});
-
-echo '<pre>';
-print_r($piped);
-echo '</pre>';
-exit;
+echo "The average of:".$average;
 
 
 

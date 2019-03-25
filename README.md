@@ -64,7 +64,6 @@ Array
 
 * [all](#all)
 * [average](#average)
-* [avg](#avg)
 * [chunk](#chunk)
 * [concat](#concat)
 * [countBy](#countBy)

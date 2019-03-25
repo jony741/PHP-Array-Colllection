@@ -41,4 +41,8 @@ class Helpers
         return $target;
     }
 
+    public  static function value($value){
+        return $value instanceof Closure ? self::$value() : $value;
+    }
+
 }
