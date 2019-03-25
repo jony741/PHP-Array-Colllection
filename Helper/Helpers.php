@@ -17,7 +17,7 @@ class Helpers
                 if ($target instanceof Collection) {
                     $target = $target->all();
                 } elseif (! is_array($target)) {
-                    return value($default);
+                    return self::value($default);
                 }
 
                 $result = [];
@@ -34,7 +34,7 @@ class Helpers
             } elseif (is_object($target) && isset($target->{$segment})) {
                 $target = $target->{$segment};
             } else {
-                return value($default);
+                return self::value($default);
             }
         }
 
