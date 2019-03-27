@@ -19,10 +19,10 @@ $make_data = make_data([
     ['account_id' => 'account-x11', 'product' => 'Desk'],
 ]);
 
-$grouped = $make_data->groupBy('account_id');
+$grouped = $make_data->groupBy('account_id')->toArray();
 
 echo '<pre>';
-print_r($grouped->toArray());
+print_r(grouped);
 echo '</pre>';
 exit;
 ```
