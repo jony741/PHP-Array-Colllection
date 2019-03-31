@@ -413,7 +413,7 @@ Output
 ### `flatten()`
 The flatten method flattens a multi-dimensional data array into a single dimension:
 ```$xslt
-$make_data = make_data(['name' => 'taylor', 'languages' => ['php', 'javascript']]);
+$make_data = make_data(['name' => 'jony', 'languages' => ['php', 'javascript']]);
 $flattened = $make_data->flatten();
 $flattened->all();
 ```
