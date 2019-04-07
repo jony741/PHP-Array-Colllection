@@ -973,6 +973,10 @@ Output
          ['name' => 'Desk', 'price' => 200],
      ]
 ```
+###`sortByDesc()`
+```
+This method has the same signature as the sortBy method, but will sort the collection in the opposite order.
+```
 ### `sortKeys()`
 The sortKeys method sorts the data array by the keys of the underlying associative array:
 ```$xslt
