@@ -1,6 +1,6 @@
 # Getting started
 
-**Array Master** is a simple, elegant PHP library to make custom data. It'll make your life easier by giving custom data without complexity on your data.
+**PHP Array Collection** is a simple, elegant PHP library to make custom data. It'll make your life easier by giving custom data without complexity on your data.
 
 ###### Install Manually
 1. Download Array Master
