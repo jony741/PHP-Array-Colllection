@@ -26,6 +26,7 @@ class Array_master implements ArrayAccess, Arrayable, Countable, IteratorAggrega
 
     /**
      * The items contained in the Array_master.
+     * Update comment
      *
      * @var array
      */
